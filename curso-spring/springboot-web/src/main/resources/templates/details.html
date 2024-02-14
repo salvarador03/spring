@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Document</title>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <ul>
+        <li th:text="${user.name}"></li>
+        <li th:text="${user.lastName}"></li>
+        <li th:if="${user.email}" th:text="${user.email}"></li>
+        <li th:if="${not (user.email != null)}" th:text="${'No tiene email'}"></li> <!--Oculta el email si es nulo-->
+    </ul>
+    <a th:href="@{/list}">Ver listado</a> <br>
+    <a th:href="@{'/api/params/foo?mensaje=' + ${title}}">Ver mensaje</a> <br>
+    <a th:href="@{/api/params/foo(message='Hola que tal festival')}">Ver forma 2</a> <br><!--No funciona por el name="mensaje"-->
+    <a th:href="@{/api/params/bar(text='Hola que tal festival', code=3232)}">Ver bar mix</a><br> <!--Ver bar mix"-->
+    <a th:href="@{/api/var/baz/Hola a todos}">Ver path variable</a> <br>
+    <a th:href="@{'/api/var/baz/' + 'Hola que tal festival'}">Ver path variable 2</a> <br>
+    <a th:href="@{'/api/var/baz/' + ${title}}">Ver var path concatenado con variable titulo</a> <br>
+
+
+</body>
+</html>
